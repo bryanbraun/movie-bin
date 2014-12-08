@@ -1,71 +1,61 @@
 {% load bootstrap3 %}
+{% load staticfiles %}
 <html>
   <head>
-    <title>
-      Foundation for Learning Equality
-    </title>
+    <title>Movie Bin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+    <script src="{% static "starter/vendor/jquery/dist/jquery.min.js" %}"></script>
+
+      {% bootstrap_css %}
+      {% bootstrap_javascript %}
+
+    <script src="{% static "starter/vendor/handlebars/handlebars.min.js" %}"></script>
+    <script src="{% static "starter/vendor/imagesloaded/imagesloaded.pkgd.min.js" %}"></script>
+    <script src="{% static "starter/main.js" %}"></script>
+    <link rel="stylesheet" href="{% static "starter/styles.css" %}">
   </head>
 
   <body>
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Brand</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-
+    <div class="lights"></div>
+    <header class="page-top">
+      <h1 class="page-title">Movie Bin</h1>
+    </header>
     {% block content %}
-      This could be the start of a beautiful program!
+      <div class="page-content">
+        <div class="container-fluid">
+          <div class="row movies">
+
+            {% verbatim %}
+
+              <script id="movie-template" type="text/x-handlebars-template">
+                {{#each movies}}
+                <div class="movie before">
+                  <div class="card">
+                    <div class="poster">
+                      <a class="poster-link" href="#">
+                        {{!-- @todo: add a condition for when an image is not found --}}
+                        <img class="poster-img scale-fx" src="{{this.posters.detailed}}" />
+                      </a>
+                    </div>
+                    <div class="detail">
+                      <a class="close" href="#">✕</a>
+                      <h2 class="title">{{this.title}} <span class="year"> ({{this.year}})</span></h2>
+                        <div class="runtime">{{this.runtime}} minutes</div>
+                        <div class="mpaa">{{this.mpaa_rating}}</div>
+                      <div class="rating">Audience Rating: <span class="a-score">{{this.ratings.audience_score}}</span><span class="a-max">/100</span></div>
+                      <p class="summary">{{this.synopsis}}</p>
+                    </div>
+                  </div>
+                </div>
+                {{/each}}
+              </script>
+
+            {% endverbatim %}
+
+          </div>
+        </div>
+      </div>
     {% endblock %}
   </body>
 </html>

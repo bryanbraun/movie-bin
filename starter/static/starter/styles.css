@@ -1,0 +1,150 @@
+/**
+ * @todo
+ *   - Abstract out common pixel sizes as variables using SASS.
+ *   - Setup autoprefixer for handling CSS3 browser prefixes.
+ *   - We could remove much of the unused bootstrap to improve CSS load time.
+ *   - Minify, etc.
+ */
+
+body {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0;
+  background: #f1f1f1;
+
+}
+
+.page-top {
+  height: 275px;
+  border-top: 1px solid #70c26f;
+  background: #70c26f;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 60px;
+  margin-top: 52px;
+  color: white;
+}
+
+.page-content {
+  margin-top: -90px;
+  margin-bottom: 300px;
+  text-align: center;
+}
+
+.movies {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.movie {
+  min-width: 180px;
+  min-height: 257px;
+  margin: 0 22px 50px 22px;
+  display: inline-block;
+  vertical-align: top;
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
+  -webkit-transition: 0.1s 0s;
+          transition: 0.1s 0s;
+}
+
+.card {
+  background: #000;
+}
+
+.before {
+  opacity: 0;
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+}
+
+.after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+}
+
+.poster {
+  background: #000;
+  float: left;
+}
+
+.poster-link {
+  display: block;
+}
+
+.scale-fx {
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
+  -webkit-transition: 0.1s 0s;
+          transition: 0.1s 0s;
+}
+
+.scale-fx:hover {
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.detail {
+  display: none;
+  background: white;
+  margin-left: 240px;
+  padding: 1em;
+  min-height: 328px;
+}
+
+.lights {
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
+  -webkit-transition: 0.8s;
+          transition: 0.8s;
+  background-color: black;
+  opacity: 0;
+  position: absolute;
+}
+
+.dim {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: -1000;
+  opacity: 0.8;
+}
+
+.summary {
+  text-align: left;
+}
+
+.year {
+  color: #ccc;
+}
+
+.a-max {
+  font-weight: bold;
+}
+
+.a-score {
+  font-weight: bold;
+  color: blue;
+}
+
+.mpaa,
+.runtime {
+  width: 50%;
+  float: right;
+  margin-bottom: 8px;
+}
+
+.rating {
+  margin-bottom: 10px;
+  clear: right;
+}
